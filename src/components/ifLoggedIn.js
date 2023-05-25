@@ -1,6 +1,6 @@
 import React from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.js'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../node_modules/bootstrap/dist/js/bootstrap.js'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -19,25 +19,28 @@ const firebaseConfig = {
   appId: "1:800356072567:web:b32b2359111e2acc761a72"
 };
 
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 
 const ifLoggedIn = (contentToShow) => {
     const auth = getAuth();
-    onAuthStateChanged((user) => {
-      if (user) {
-        return(
-            contentToShow
-        )
-      } else {
-        return (
-            <div className='logginScreen'>
-                <p>Hello</p>
-            </div>
-        )
+    auth.onAuthStateChanged(user => {
+      if(user != null) {
+          return (
+            <p>
+              How ? 
+            </p>
+          )
       }
-    });
+      else {
+          return (
+            <p>Note logged in</p>
+          )
+      }
+    })
 }
 
 export default ifLoggedIn
+

@@ -1,6 +1,6 @@
 import React from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.js'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../node_modules/bootstrap/dist/js/bootstrap.js'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use

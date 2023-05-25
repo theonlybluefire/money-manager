@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.js'
+import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js'
+import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css'
 import ifLoggedIn from './components/ifLoggedIn';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
