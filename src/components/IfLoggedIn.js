@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../../node_modules/bootstrap/dist/js/bootstrap.js'
+import 'bootstrap'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -25,21 +25,19 @@ const app = initializeApp(firebaseConfig);
 
 
 const ifLoggedIn = (contentToShow) => {
+    const [contents, setContent] = useState('');
     const auth = getAuth();
     auth.onAuthStateChanged(user => {
       if(user != null) {
-          return (
-            <p>
-              How ? 
-            </p>
-          )
+          setContent('Test')
       }
       else {
-          return (
-            <p>Note logged in</p>
-          )
-      }
+          setContent(contentToShow);      
+        }
     })
+    return (
+      {contents}
+    )
 }
 
 export default ifLoggedIn
