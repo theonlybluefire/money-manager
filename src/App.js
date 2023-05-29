@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.js'
-import ifLoggedIn from './components/ifLoggedIn';
+import IfLoggedIn from './components/IfLoggedIn';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
@@ -25,7 +25,10 @@ const app = initializeApp(firebaseConfig);
 
 function App() {
   const [contents,setContents] = useState('');
-  setContents(<ifLoggedIn contentToShow='<p>not working<p/>'/>)
+  setContents(<div class="spinner-grow" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>)
+
   return (
     <div>
       {contents}
