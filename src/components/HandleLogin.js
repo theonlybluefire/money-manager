@@ -6,11 +6,9 @@ import 'bootstrap'
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
-import HandleLogin from './HandleLogin';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
-//components
-import HandleLogin from './HandleLogin';
+
 //firebase     
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -24,25 +22,28 @@ import HandleLogin from './HandleLogin';
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
 
-function IfLoggedIn(contentToShow) {
-  console.log('test')
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribed = auth.onAuthStateChanged(user => {
-      setUser(user);
-    });
-  }, []);
-
-  return (
-    <div>
-      {user ? (
-        {contentToShow}
-      ) : (
-        <HandleLogin/>
-      )}
+const HandleLogin = () => {
+    return (
+      <div class="card text-center">
+      <div class="card-header">
+          Login
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Du musst dich einloggen</h5>
+        {/*Login form*/}
+        <form>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">E-Mail</label>
+            <input type="email" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="col-form-label">Password</label>
+            <input type="password" class="form-control" />
+          </div>
+        </form>
+        <button type='submit' class="btn btn-success">Login</button>
+        </div>
     </div>
-  );
+    )
 }
-
-export default IfLoggedIn
+export default HandleLogin
