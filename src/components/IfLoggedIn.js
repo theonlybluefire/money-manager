@@ -6,11 +6,11 @@ import 'bootstrap'
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
-import HandleLogin from './HandleLogin';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 //components
 import HandleLogin from './HandleLogin';
+import MainPage from './main/MainPage';
 //firebase     
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -24,8 +24,7 @@ import HandleLogin from './HandleLogin';
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
 
-function IfLoggedIn(contentToShow) {
-  console.log('test')
+function IfLoggedIn() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ function IfLoggedIn(contentToShow) {
   return (
     <div>
       {user ? (
-        {contentToShow}
+        <MainPage/>
       ) : (
         <HandleLogin/>
       )}

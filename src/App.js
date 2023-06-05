@@ -8,7 +8,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, up
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 //components
 import IfLoggedIn from './components/IfLoggedIn'
-
+import HandleLogin from './components/HandleLogin';
 
 
 
@@ -30,7 +30,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 function App() {
   return (
- <IfLoggedIn contentToShow =''/>
+ <IfLoggedIn/>
   )
 }
 export default App;

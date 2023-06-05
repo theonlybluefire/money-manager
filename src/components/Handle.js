@@ -20,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 
-const handle = (note) => {
+const Handle = (note) => {
     const moneyTable = {
         "1":5,
         "1-":4,
@@ -30,6 +30,7 @@ const handle = (note) => {
         "2-":0
     }
     let money = moneyTable[note]
+    return money
 }
 
-export default handle
+export default Handle

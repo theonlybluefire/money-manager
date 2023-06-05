@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
 import 'bootstrap'
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+  //components
+import Handle from '../Handle';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,51 +25,45 @@ import 'bootstrap'
     const auth = getAuth();
 
 
-function HandleLogin() {
-  const [password, setPassword] = useState('');
-  const [email,setEmail] = useState('')
 
+
+
+const MainPage = () => {
+  //handle Form
+  const [note, setNote] = useState('')
   function handleSubmit(event) {
     event.preventDefault();
-    //login into user account
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-      // ...
-   })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode,errorMessage)
-  });
-
+    let output = Handle(note)
+    console.log(output)
+    setNote('')
   }
-
   return (
-    <div class="card text-center">
-    <div class="card-header">
-        Login
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Du musst dich einloggen</h5>
-      {/*Login form*/}
-      <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="email" class="col-form-label">E-Mail</label>
-          <input type="email" class="form-control" value={email} onChange={(event) => {setEmail(event.target.value)}} />
-        </div>
-        <div class="mb-3">
-          <label for="password" class="col-form-label">Password</label>
-          <input type="password" class="form-control" value={password} onChange={(event) => {setPassword(event.target.value)}}/>
-        </div>
-        <button type='submit' class="btn btn-success">Login</button>
-      </form>
+    <div>
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+        History
+      </button>
 
+    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          {/*History Item */}
+        </div>
+      </div>
+    </div>
+      {/*Form */}
+      <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Note</label>
+      <form onSubmit={handleSubmit}>
+        <input  type="number" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" value={note} onChange={(event) => {setNote(event.target.value)}}/>
+        <button class="btn btn-success" type='submit'>Submit</button>
+        </form>
       </div>
   </div>
   )
 }
 
-export default HandleLogin
-
+export default MainPage
