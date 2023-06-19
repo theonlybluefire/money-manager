@@ -8,6 +8,7 @@ import 'bootstrap'
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
 import Handle from '../Handle';
+import LoadHistory from './History';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,13 +30,15 @@ import Handle from '../Handle';
 
 
 const MainPage = () => {
+  //hanlde grade
   //handle Form
   const [note, setNote] = useState('')
   function handleSubmit(event) {
     event.preventDefault();
-    let output = Handle(note)
-    console.log(output)
-    setNote('')
+
+    let output = Handle(note);
+    
+    setNote('') //rest input
   }
   return (
     <div>
@@ -50,7 +53,7 @@ const MainPage = () => {
       </div>
       <div class="offcanvas-body">
         <div>
-          {/*History Item */}
+          <LoadHistory/>
         </div>
       </div>
     </div>
