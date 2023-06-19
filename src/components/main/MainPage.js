@@ -30,6 +30,8 @@ import LoadHistory from './History';
 
 
 const MainPage = () => {
+
+  
   //hanlde grade
   //handle Form
   const [note, setNote] = useState('')
