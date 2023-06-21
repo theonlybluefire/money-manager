@@ -7,6 +7,7 @@ import 'bootstrap'
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
+  import { renderArray } from '../renderArray';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,40 +28,45 @@ import 'bootstrap'
 
 const LoadHistory = () => {
   //load history
-  const [setHistory, History] = useState('')
+  const [History, setHistory] = useState('')
   function load() {
-    console.log('loadHistory')
     auth.onAuthStateChanged(user => {
-      if(user != null) {
-        console.log('logged in ')
+      if (user != null) {
+        console.log('logged in two')
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
         const emailVerified = user.emailVerified;
         const userId = user.uid;
         const db = getDatabase();
-        const getHistory = ref(db, 'users/' + userId + '/history');
-          console.log('passed 1')
-          onValue(getHistory, (snapshot) => {
-          const data = snapshot.value();
-          console.log('passed 2')
-          console.log(data)
-          setHistory(data)
-        });
-    }
-    else {
-        console.log('Not logged in ')
-    }
-  
+        const getHistory = ref(db, 'users/' + userId);
+        console.log('passed 1')
+        onValue(getHistory, (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
 
-  },700)
+            console.log(data)
+            setHistory(data)
+          } else {
+            console.log('No data available')
+          }
+        });
+      } else {
+        console.log('Not logged in ')
+      }
+    });
 }
+useEffect(() => {
   load()
+
+})
+
+
     
 
     return (
       <div>
-        {History}
+        <renderArray arrayToRender={History}/>
       </div>
     )
 }
