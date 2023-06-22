@@ -32,7 +32,6 @@ const LoadHistory = () => {
   function load() {
     auth.onAuthStateChanged(user => {
       if (user != null) {
-        console.log('logged in two')
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
@@ -40,12 +39,9 @@ const LoadHistory = () => {
         const userId = user.uid;
         const db = getDatabase();
         const getHistory = ref(db, 'users/' + userId);
-        console.log('passed 1')
         onValue(getHistory, (snapshot) => {
           if (snapshot.exists()) {
             const data = snapshot.val();
-
-            console.log(data)
             setHistory(data)
           } else {
             console.log('No data available')
@@ -56,10 +52,7 @@ const LoadHistory = () => {
       }
     });
 }
-useEffect(() => {
-  load()
 
-})
 
 
     
