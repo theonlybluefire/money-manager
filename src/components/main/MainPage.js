@@ -11,7 +11,7 @@ import 'bootstrap'
   //components
 import Handle from '../Handle';
 import LoadHistory from './History';
-import showToast from './showToast';
+import { Toast } from './toast'
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,9 +45,6 @@ const MainPage = () => {
     
     setNote('') //rest input
   }
-  const [ToastMessage, setToastMessage] = useState('');
-  setToastMessage('Hi')
-  showToast('toast')
   return (
     <div>
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -74,19 +71,7 @@ const MainPage = () => {
         </form>
       </div>
       {/*Toast*/ }
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="..."/>
-            <strong class="me-auto">App</strong>
-            <small>Now</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-        <div class="toast-body">
-          {ToastMessage}
-        </div>
-        </div>
-</div>
+      <Toast message='Test'/>
   </div>
   )
 }
