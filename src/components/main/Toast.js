@@ -1,8 +1,9 @@
 import bootstrap from "bootstrap";
+import React from "react";
 const { useState, useEffect, useRef } = React
 const { Toast } = bootstrap
 
-function toast(message) {
+const ErrorToast = (message) => {
     const [messageToShow, setMessage] = useState('')
     setMessage(message);
     var [toast, setToast] = useState(false);
@@ -38,4 +39,4 @@ function toast(message) {
     </div>
     )
 }
-export { toast }
+export default ErrorToast

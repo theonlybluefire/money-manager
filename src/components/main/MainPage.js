@@ -11,7 +11,8 @@ import 'bootstrap'
   //components
 import Handle from '../Handle';
 import LoadHistory from './History';
-import { Toast } from './toast'
+import ErrorToast from './Toast'
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -71,7 +72,7 @@ const MainPage = () => {
         </form>
       </div>
       {/*Toast*/ }
-      <Toast message='Test'/>
+      <ErrorToast message='Test'/>
   </div>
   )
 }
