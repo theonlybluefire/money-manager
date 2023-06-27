@@ -1,6 +1,7 @@
-import bootstrap from "bootstrap";
+import * as bootstrap from "bootstrap";
 import React from "react";
 const { useState, useEffect, useRef } = React
+
 const { Toast } = bootstrap
 
 const ErrorToast = (message) => {

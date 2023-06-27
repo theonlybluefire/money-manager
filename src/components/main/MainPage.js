@@ -12,7 +12,7 @@ import 'bootstrap'
 import Handle from '../Handle';
 import LoadHistory from './History';
 import ErrorToast from './Toast'
-
+import writeUserData from '../writeDB'
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -43,7 +43,7 @@ const MainPage = () => {
     event.preventDefault();
 
     let output = Handle(note);
-    
+    writeUserData(output)
     setNote('') //rest input
   }
   return (
