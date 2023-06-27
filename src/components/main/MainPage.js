@@ -71,8 +71,8 @@ const MainPage = () => {
         <button class="btn btn-success" type='submit'>Submit</button>
         </form>
       </div>
-      {/*Toast*/ }
-      <ErrorToast message='Test'/>
+      {/*Toast cooming soon*/ }
+      
   </div>
   )
 }
