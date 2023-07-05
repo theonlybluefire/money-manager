@@ -43,7 +43,7 @@ const MainPage = () => {
     event.preventDefault();
 
     let output = Handle(note);
-    writeUserData(output)
+    writeUserData(note)
     setNote('') //rest input
   }
   return (

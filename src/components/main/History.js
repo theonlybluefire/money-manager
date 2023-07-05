@@ -7,7 +7,7 @@ import 'bootstrap'
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
-  import { renderArray } from '../renderArray';
+ import RenderArray from '../RenderArray';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,8 +28,8 @@ import 'bootstrap'
 
 const LoadHistory = () => {
   //load history
-  const [History, setHistory] = useState('')
   function load() {
+    
     auth.onAuthStateChanged(user => {
       if (user != null) {
         const displayName = user.displayName;
@@ -37,29 +37,29 @@ const LoadHistory = () => {
         const photoURL = user.photoURL;
         const emailVerified = user.emailVerified;
         const userId = user.uid;
+
         const db = getDatabase();
-        const getHistory = ref(db, 'users/' + userId);
-        onValue(getHistory, (snapshot) => {
-          if (snapshot.exists()) {
-            const data = snapshot.val();
-            setHistory(data)
-          } else {
-            console.log('No data available')
-          }
-        });
-      } else {
-        console.log('Not logged in ')
+        const historyRef = ref(db, 'users/' + userId);
+        onValue(historyRef, (snapshot) => {
+          const data = snapshot.val();
+          console.log('test')
+          localStorage.setItem('data', JSON.stringify(data));
+          console.log(Object.keys(JSON.parse(localStorage.getItem('data'))).map((key) => JSON.parse(localStorage.getItem('data'))[key].note))
+        })
       }
-    });
-}
+    })}
 
 
 
-    
+
+load();
+console.log(JSON.parse(localStorage.getItem('data')))
+
+
 
     return (
       <div>
-        <renderArray arrayToRender={History}/>
+        <RenderArray arrayToRender={JSON.parse(localStorage.getItem('data'))}/>
       </div>
     )
 }
