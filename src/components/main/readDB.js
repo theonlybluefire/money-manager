@@ -29,37 +29,35 @@ import 'bootstrap'
 const LoadHistory = () => {
   //load history
   function load() {
-    
     auth.onAuthStateChanged(user => {
       if (user != null) {
+        const array = []
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
         const emailVerified = user.emailVerified;
         const userId = user.uid;
-
         const db = getDatabase();
         const historyRef = ref(db, 'users/' + userId);
         onValue(historyRef, (snapshot) => {
-          const data = snapshot.val();
-          console.log('test')
-          localStorage.setItem('data', JSON.stringify(data));
-          console.log(Object.keys(JSON.parse(localStorage.getItem('data'))).map((key) => JSON.parse(localStorage.getItem('data'))[key].note))
+          snapshot.forEach((childSnapshot) => {
+            const childKey = childSnapshot.key;
+            const childData = childSnapshot.val();
+            array.push(childData.note);
+            console.log(childData)
+            console.info(childKey)
+          })
         })
+        console.log(array)
+        sessionStorage.setItem('data', JSON.stringify(array));
+        console.log(JSON.parse(sessionStorage.getItem('data')))
       }
     })}
-
-
-
-
 load();
-console.log(JSON.parse(localStorage.getItem('data')))
-
-
 
     return (
       <div>
-        <RenderArray arrayToRender={JSON.parse(localStorage.getItem('data'))}/>
+        <RenderArray arrayToRender={JSON.parse(sessionStorage.getItem('data'))}/>
       </div>
     )
 }

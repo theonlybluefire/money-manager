@@ -10,7 +10,7 @@ import 'bootstrap'
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
 import Handle from '../Handle';
-import LoadHistory from './History';
+import LoadHistory from './readDB';
 import ErrorToast from './Toast'
 import writeUserData from '../writeDB'
   // TODO: Add SDKs for Firebase products that you want to use
@@ -49,12 +49,12 @@ const MainPage = () => {
   return (
     <div>
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-        Full view
+        History
       </button>
 
     <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+        <h5 class="offcanvas-title" id="staticBackdropLabel">History</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -67,7 +67,7 @@ const MainPage = () => {
       <div class="mb-3">
       <label for="formGroupExampleInput" class="form-label">Note</label>
       <form onSubmit={handleSubmit}>
-        <input  type="number" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder" value={note} onChange={(event) => {setNote(event.target.value)}}/>
+        <input  type="number" class="form-control" id="formGroupExampleInput" placeholder="Note(1-6)" value={note} onChange={(event) => {setNote(event.target.value)}}/>
         <button class="btn btn-success" type='submit'>Submit</button>
         </form>
       </div>
