@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { lazy, Suspense , useState} from 'react';
 
 function RenderArray(arrayToRender) {
- return (
-  <div>
-    {arrayToRender.map((note)=> (
-      <div>{note}</div>
-    ))}
-  </div>
- )
+  const array = arrayToRender
+  console.log(array)
+  return (
+    <div>
+      <h1>Meine App</h1>
+      <Suspense fallback={<div>Lade...</div>}>
+        {arrayToRender}
+      </Suspense>
+    </div>
+  );
 }
-export default RenderArray
+
+export default RenderArray;
