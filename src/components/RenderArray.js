@@ -7,7 +7,7 @@ function RenderArray(arrayToRender) {
     <div>
       <h1>Meine App</h1>
       <Suspense fallback={<div>Lade...</div>}>
-        {arrayToRender}
+        
       </Suspense>
     </div>
   );
