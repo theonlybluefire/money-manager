@@ -1,14 +1,12 @@
-import React, { lazy, Suspense , useState} from 'react';
+import React from "react";
 
-function RenderArray(arrayToRender) {
-  const array = arrayToRender
-  console.log(array)
+function RenderArray({ arrayToRender }) {
+  console.log(arrayToRender);
   return (
     <div>
-      <h1>Meine App</h1>
-      <Suspense fallback={<div>Lade...</div>}>
-        
-      </Suspense>
+      {arrayToRender.map((note) => (
+        <div className="user">{note}</div>
+      ))}
     </div>
   );
 }

@@ -27,11 +27,13 @@ import 'bootstrap'
 
 
 const LoadHistory = () => {
+  const array = [] //über den Funktion Scope kommen
+  const [content, setContent] = useState('')
   //load history
   function load() {
     auth.onAuthStateChanged(user => {
       if (user != null) {
-        const array = []
+        
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
@@ -44,20 +46,25 @@ const LoadHistory = () => {
             const childKey = childSnapshot.key;
             const childData = childSnapshot.val();
             array.push(childData.note);
-            console.log(childData)
+            console.info(childData)
             console.info(childKey)
           })
         })
         console.log(array)
-        sessionStorage.setItem('data', JSON.stringify(array));
-        console.log(JSON.parse(sessionStorage.getItem('data')))
+        
       }
     })}
+    setContent(<div>
+      {array.map((note) => (
+      <div className="user">{note}</div>
+      ))}
+      </div>)
 load();
+
 
     return (
       <div>
-        <RenderArray arrayToRender={JSON.parse(sessionStorage.getItem('data'))}/>
+         {content}
       </div>
     )
 }
