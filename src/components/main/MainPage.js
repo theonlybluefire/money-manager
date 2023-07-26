@@ -10,7 +10,7 @@ import 'bootstrap'
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
 import Handle from '../Handle';
-import LoadHistory from './readDB';
+import showDB from './readDB';
 import ErrorToast from './Toast'
 import writeUserData from '../writeDB'
   // TODO: Add SDKs for Firebase products that you want to use
@@ -59,7 +59,7 @@ const MainPage = () => {
       </div>
       <div class="offcanvas-body">
         <div>
-          <LoadHistory/>
+          <showDB/>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import 'bootstrap'
   import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
   //components
  import RenderArray from '../RenderArray';
+ import Handle from '../Handle';
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,11 +27,12 @@ import 'bootstrap'
 
 
 
-const LoadHistory = () => {
+const showDB = () => {
   const array = [] //über den Funktion Scope kommen
+  const DBData = [] //Array für die Handle Funktion um alles zusammennzurechnen
   const [content, setContent] = useState('')
   //load history
-  function load() {
+  function showDB() { //not rendered because of errors
     auth.onAuthStateChanged(user => {
       if (user != null) {
         
@@ -53,21 +55,57 @@ const LoadHistory = () => {
         console.log(array)
         
       }
-    })}
+    })
     setContent(<div>
       {array.map((note) => (
       <div className="user">{note}</div>
       ))}
-      </div>)
-load();
-
-
+      </div>)}
+        
+        
     return (
       <div>
          {content}
       </div>
     )
 }
+const HandleDB = () => { //show DB and give it over to the handle function
+  const [value, setValue] = useState('')
+  const databaseArray = []
+  if (user != null) {
+    const displayName = user.displayName;
+    const email = user.email;
+    const photoURL = user.photoURL;
+    const emailVerified = user.emailVerified;
+    const userId = user.uid;
+    const db = getDatabase();
+    const historyRef = ref(db, 'users/' + userId);
+    onValue(historyRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const childKey = childSnapshot.key;
+        const childData = childSnapshot.val();
+        databaseArray.push(childData.note);
+        console.info(childData)
+        console.info(childKey)
+            })
+          })
+          console.log('data to handle',databaseArray);
+          
+          for ( let i=0; i<databaseArray.length; i++ ) {
+            const a = Handle(databaseArray[i]);
+            const b = Handle(databaseArray[i+1]);
+            const data = a + b;
+            setValue(data)
+          }
+          
+        }
+        return (
+          <div>
+            <h2 class="text-centere">Euro :</h2>
+            <br/>
+            {value}
+          </div>
+        )
+      }
 
-export default LoadHistory
 
