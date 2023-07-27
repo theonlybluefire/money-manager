@@ -26,8 +26,8 @@ import 'bootstrap'
     const auth = getAuth();
 
 
-
-const showDB = () => {
+/*
+export function ShowDB() {
   const array = [] //über den Funktion Scope kommen
   const DBData = [] //Array für die Handle Funktion um alles zusammennzurechnen
   const [content, setContent] = useState('')
@@ -69,9 +69,11 @@ const showDB = () => {
       </div>
     )
 }
-const HandleDB = () => { //show DB and give it over to the handle function
+*/
+export function HandleDB () { //show DB and give it over to the handle function
   const [value, setValue] = useState('')
   const databaseArray = []
+  auth.onAuthStateChanged(user => {
   if (user != null) {
     const displayName = user.displayName;
     const email = user.email;
@@ -92,13 +94,17 @@ const HandleDB = () => { //show DB and give it over to the handle function
           console.log('data to handle',databaseArray);
           
           for ( let i=0; i<databaseArray.length; i++ ) {
+            console.error('started')
             const a = Handle(databaseArray[i]);
+            console.log('a',a)
             const b = Handle(databaseArray[i+1]);
+            console.log('b',b)
             const data = a + b;
+            console.console.log('data',data)
             setValue(data)
           }
           
-        }
+        }})
         return (
           <div>
             <h2 class="text-centere">Euro :</h2>

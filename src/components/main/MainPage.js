@@ -1,51 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-import '../../../node_modules/bootstrap/dist/js/bootstrap.js'
-import 'bootstrap'
-  // Import the functions you need from the SDKs you need
+//React, Bootstrap
+  import React, { useState, useEffect } from 'react'
+  import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
+  import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
+  import '../../../node_modules/bootstrap/dist/js/bootstrap.js'
+  import 'bootstrap'
+// Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
   import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
-  //components
-import Handle from '../Handle';
-import showDB from './readDB';
-import ErrorToast from './Toast'
-import writeUserData from '../writeDB'
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
+//components
+  import Handle from '../Handle';
+  import { HandleDB} from './readDB.js'
+  import ErrorToast from './Toast'
+  import writeUserData from '../writeDB'
 //firebase     
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
-      authDomain: "moneyapp-5f530.firebaseapp.com",
-      projectId: "moneyapp-5f530",
-      storageBucket: "moneyapp-5f530.appspot.com",
-      messagingSenderId: "800356072567",
-      appId: "1:800356072567:web:b32b2359111e2acc761a72"
-    };
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
+  const firebaseConfig = {
+    apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
+    authDomain: "moneyapp-5f530.firebaseapp.com",
+    projectId: "moneyapp-5f530",
+    storageBucket: "moneyapp-5f530.appspot.com",
+    messagingSenderId: "800356072567",
+    appId: "1:800356072567:web:b32b2359111e2acc761a72"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
 
-
-
-
-
+//Main Page 
 const MainPage = () => {
-
-  
-  //hanlde grade
-  //handle Form
+  //handle Input
   const [note, setNote] = useState('')
   function handleSubmit(event) {
     event.preventDefault();
-
     let output = Handle(note);
     writeUserData(note)
     setNote('') //rest input
   }
+  
   return (
     <div>
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -59,9 +50,12 @@ const MainPage = () => {
       </div>
       <div class="offcanvas-body">
         <div>
-          <showDB/>
+          {/* Render History (read DB) */}
         </div>
       </div>
+    </div>
+    <div class="DBOutput">
+        <HandleDB/>
     </div>
       {/*Form */}
       <div class="mb-3">
