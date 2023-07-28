@@ -70,8 +70,12 @@ export function ShowDB() {
     )
 }
 */
-export function HandleDB () { //show DB and give it over to the handle function
+export function HandleDB () {
+
+
+//show DB and give it over to the handle function
   const [value, setValue] = useState('')
+  let sum = 0; //set Sum null
   const databaseArray = []
   auth.onAuthStateChanged(user => {
   if (user != null) {
@@ -90,27 +94,29 @@ export function HandleDB () { //show DB and give it over to the handle function
         console.info(childData)
         console.info(childKey)
             })
+            let sum = 0; //set Sum null
+            for(let i = 0; i < databaseArray.length; i++) {
+              sum += Handle(databaseArray[i])
+            }
+            
+            
           })
-          console.log('data to handle',databaseArray);
-          
-          for ( let i=0; i<databaseArray.length; i++ ) {
-            console.error('started')
-            const a = Handle(databaseArray[i]);
-            console.log('a',a)
-            const b = Handle(databaseArray[i+1]);
-            console.log('b',b)
-            const data = a + b;
-            console.console.log('data',data)
-            setValue(data)
-          }
+          setValue(0)
+
+    //handle Array
+    
+
+
           
         }})
+        setValue(sum)
         return (
           <div>
             <h2 class="text-centere">Euro :</h2>
             <br/>
             {value}
           </div>
+
         )
       }
 
