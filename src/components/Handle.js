@@ -28,6 +28,7 @@ const Handle = (note) => {
         "2+":2,
         "2":1,
         "2-":0
+
     }
     let money = moneyTable[note]
     return money

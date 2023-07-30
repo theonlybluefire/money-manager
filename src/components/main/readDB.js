@@ -97,7 +97,8 @@ export function HandleDB () {
             })
             let sum = 0; //set Sum null
             for(let i = 0; i < databaseArray.length; i++) {
-              sum += Handle(databaseArray[i])
+              sum += Handle(databaseArray[i]);
+              console.log('Durchlauf',i,'Wert',sum)
             }
             console.log('before Function',sum)
             setValue(sum)
