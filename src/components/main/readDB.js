@@ -75,9 +75,10 @@ export function HandleDB () {
 
 //show DB and give it over to the handle function
   const [value, setValue] = useState('')
-  let sum = 0; //set Sum null
   const databaseArray = []
+  useEffect(() => {
   auth.onAuthStateChanged(user => {
+      let sum = 0; //set Sum null
   if (user != null) {
     const displayName = user.displayName;
     const email = user.email;
@@ -98,23 +99,15 @@ export function HandleDB () {
             for(let i = 0; i < databaseArray.length; i++) {
               sum += Handle(databaseArray[i])
             }
-            
-            
+            console.log('before Function',sum)
+            setValue(sum)
           })
-          setValue(0)
-
-    //handle Array
-    
-
-
-          
         }})
-        setValue(sum)
+            }, []);        
         return (
           <div>
-            <h2 class="text-centere">Euro :</h2>
+            <h2 class="text-centere">Euro : {value}</h2>
             <br/>
-            {value}
           </div>
 
         )
