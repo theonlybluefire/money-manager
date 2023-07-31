@@ -1,4 +1,39 @@
 body {
   color: white !important;
-  background-color: black !important;
+  background-color: rgb(34, 33, 33) !important;
+}
+.gradient {
+  font-family: "Poppins", sans-serif;
+  background-color: black;
+  background-image: linear-gradient(120deg, #5fdee5 2.3%, #004bad 100%);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+.gradientButton {
+  background-image: linear-gradient(120deg, #5fdee5 2.3%, #004bad 100%);
+  border: none !important;
+  border-radius: 20px !important;
+  padding-left: 5vw !important;
+  padding-right: 5vw !important;
+}
+.blob {
+  background-color: white;
+  height: 34vmax;
+  aspect-ratio: 1;
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #5fdee5 2.3%, #004bad 100%);
+  animation: rotate 20s infinite;
+  opacity: 0.8;
+  filter: blur(200px);
+  overflow: hidden !important;
+  z-index: -1;
 }

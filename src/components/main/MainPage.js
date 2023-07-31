@@ -24,6 +24,7 @@ import Handle from "../Handle";
 import { HandleDB } from "./readDB.js";
 import ErrorToast from "./Toast";
 import writeUserData from "../writeDB";
+import "../../index.css";
 //firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
@@ -49,6 +50,7 @@ const MainPage = () => {
 
   return (
     <div>
+      <div class="blob"></div>
       <button
         class="btn btn-primary"
         type="button"
