@@ -19,6 +19,7 @@ import {
 //components
 import IfLoggedIn from "./components/IfLoggedIn";
 import HandleLogin from "./components/HandleLogin";
+import "./index.css";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
