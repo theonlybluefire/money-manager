@@ -36,50 +36,45 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-/*
 export function ShowDB() {
-  const array = [] //über den Funktion Scope kommen
-  const DBData = [] //Array für die Handle Funktion um alles zusammennzurechnen
-  const [content, setContent] = useState('')
-  //load history
-  function showDB() { //not rendered because of errors
-    auth.onAuthStateChanged(user => {
+  const array = []; //über den Funktion Scope kommen
+  const DBData = []; //Array für die Handle Funktion um alles zusammennzurechnen
+  const [content, setContent] = useState("");
+  useEffect(() => {
+    //load history
+
+    auth.onAuthStateChanged((user) => {
       if (user != null) {
-        
         const displayName = user.displayName;
         const email = user.email;
         const photoURL = user.photoURL;
         const emailVerified = user.emailVerified;
         const userId = user.uid;
         const db = getDatabase();
-        const historyRef = ref(db, 'users/' + userId);
+        const historyRef = ref(db, "users/" + userId);
         onValue(historyRef, (snapshot) => {
           snapshot.forEach((childSnapshot) => {
             const childKey = childSnapshot.key;
             const childData = childSnapshot.val();
             array.push(childData.note);
-            console.info(childData)
-            console.info(childKey)
-          })
-        })
-        console.log(array)
-        
+            console.info(childData);
+            console.info(childKey);
+          });
+        });
+        console.log(array);
+        setContent(
+          <div>
+            {array.map((note) => (
+              <div className="user">{note}</div>
+            ))}
+          </div>
+        );
       }
-    })
-    setContent(<div>
-      {array.map((note) => (
-      <div className="user">{note}</div>
-      ))}
-      </div>)}
-        
-        
-    return (
-      <div>
-         {content}
-      </div>
-    )
+    });
+  }, []);
+  return <div>{content}</div>;
 }
-*/
+
 export function HandleDB() {
   //show DB and give it over to the handle function
   const [value, setValue] = useState("");

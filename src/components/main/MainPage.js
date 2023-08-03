@@ -21,7 +21,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 //components
 import Handle from "../Handle";
-import { HandleDB } from "./readDB.js";
+import { HandleDB, ShowDB } from "./readDB.js";
 import ErrorToast from "./Toast";
 import writeUserData from "../writeDB";
 import "../../index.css";
@@ -43,7 +43,8 @@ const MainPage = () => {
   const [note, setNote] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    if (note == Boolean || note == Number) {
+    console.log("Log note", note, typeof note);
+    if (typeof note == "string" || typeof note == "number") {
       console.log(note);
       let output = Handle(note);
       writeUserData(note);
@@ -82,7 +83,10 @@ const MainPage = () => {
           ></button>
         </div>
         <div class="offcanvas-body">
-          <div>{/* Render History (read DB) */}</div>
+          <div>
+            {/* Render History (read DB) */}
+            <ShowDB />
+          </div>
         </div>
       </div>
       <div class="DBOutput">

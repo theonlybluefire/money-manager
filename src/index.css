@@ -37,3 +37,10 @@ body {
   overflow: hidden !important;
   z-index: -1;
 }
+input {
+  transition: 0.5s !important;
+  background-color: grey Impo !important;
+}
+input:focus {
+  border: green 5px solid !important;
+}
