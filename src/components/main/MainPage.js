@@ -36,22 +36,28 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-
 //Main Page
 const MainPage = () => {
   //handle Input
   const [note, setNote] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Log note", note, typeof note);
     if (typeof note == "string" || typeof note == "number") {
-      console.log(note);
       let output = Handle(note);
       writeUserData(note);
       setNote(""); //rest input
     }
   }
-
+  const Logout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   return (
     <div>
       <button
@@ -113,9 +119,11 @@ const MainPage = () => {
           </button>
         </form>
       </div>
+      <button class="btn btn-danger" onClick={Logout}>
+        Logout
+      </button>
       {/*Toast cooming soon*/}
     </div>
   );
 };
-
 export default MainPage;
