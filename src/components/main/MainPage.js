@@ -43,14 +43,16 @@ const MainPage = () => {
   const [note, setNote] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    let output = Handle(note);
-    writeUserData(note);
-    setNote(""); //rest input
+    if (note == Boolean || note == Number) {
+      console.log(note);
+      let output = Handle(note);
+      writeUserData(note);
+      setNote(""); //rest input
+    }
   }
 
   return (
     <div>
-      <div class="blob"></div>
       <button
         class="btn btn-primary"
         type="button"
