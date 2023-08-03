@@ -78,10 +78,9 @@ export function ShowDB() {
 export function HandleDB() {
   //show DB and give it over to the handle function
   const [value, setValue] = useState("");
-  const databaseArray = [];
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      let sum = 0; //set Sum null
       if (user != null) {
         const displayName = user.displayName;
         const email = user.email;
@@ -90,7 +89,9 @@ export function HandleDB() {
         const userId = user.uid;
         const db = getDatabase();
         const historyRef = ref(db, "users/" + userId);
+
         onValue(historyRef, (snapshot) => {
+          var databaseArray = [];
           snapshot.forEach((childSnapshot) => {
             const childKey = childSnapshot.key;
             const childData = childSnapshot.val();
@@ -98,11 +99,8 @@ export function HandleDB() {
             console.info(childData);
             console.info(childKey);
           });
-          let sum = 0; //set Sum null
-          for (let i = 0; i < databaseArray.length; i++) {
-            sum += Handle(databaseArray[i]);
-            console.log("Durchlauf", i, "Wert", sum);
-          }
+          console.log(databaseArray);
+          let sum = databaseArray.reduce((acc, curr) => acc + Handle(curr), 0);
           console.log("before Function", sum);
           setValue(sum);
         });
