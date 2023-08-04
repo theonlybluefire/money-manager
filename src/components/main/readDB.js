@@ -109,7 +109,7 @@ export function HandleDB() {
   }, []);
   return (
     <div>
-      <h2 class="text-centere">Euro : {value}</h2>
+      <h2 class="text-center">Euro : {value}</h2>
       <br />
     </div>
   );

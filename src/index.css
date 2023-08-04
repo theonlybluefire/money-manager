@@ -39,13 +39,37 @@ body {
   z-index: -1;
 }
 input {
-  background-color: rgb(29, 29, 29) !important;
+  background-color: rgb(36, 36, 36) !important;
   border: 2px solid !important;
-  border-radius: 20px !important;
+  border-radius: 10px !important;
   padding: 12px;
   transition: 0.5s;
   color: white !important;
 }
 input:focus {
   border: green 5px solid !important;
+}
+.card-header {
+  background-color: rgb(41, 41, 41) !important;
+  color: white !important;
+}
+.card-body {
+  background-color: rgb(10, 10, 10) !important;
+  color: white !important;
+}
+.card {
+  border-color: black !important
+  ;
+}
+.offcanvas-body {
+  background-color: rgb(15, 15, 15) !important;
+  color: white !important;
+}
+.offcanvas-header {
+  background-color: rgb(15, 15, 15) !important;
+  color: white !important;
+}
+.btn-close {
+  background-color: white !important;
+  color: white !important;
 }

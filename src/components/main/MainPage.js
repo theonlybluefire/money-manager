@@ -61,7 +61,7 @@ const MainPage = () => {
   return (
     <div>
       <button
-        class="btn btn-primary"
+        class="btn btn-primary text-center"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#staticBackdrop"
@@ -100,12 +100,10 @@ const MainPage = () => {
       </div>
       {/*Form */}
       <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label">
-          Note
-        </label>
+        <label for="formGroupExampleInput" class="form-label"></label>
         <form onSubmit={handleSubmit}>
           <input
-            type="number"
+            type="text"
             class="form-control"
             id="formGroupExampleInput"
             placeholder="Note(1-6)"
@@ -119,7 +117,7 @@ const MainPage = () => {
           </button>
         </form>
       </div>
-      <button class="btn btn-danger" onClick={Logout}>
+      <button class="btn btn-danger col-2" onClick={Logout}>
         Logout
       </button>
       {/*Toast cooming soon*/}
