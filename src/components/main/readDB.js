@@ -37,42 +37,45 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 export function ShowDB() {
-  const array = []; //über den Funktion Scope kommen
-  const DBData = []; //Array für die Handle Funktion um alles zusammennzurechnen
+  const [array, setArray] = useState([]);
   const [content, setContent] = useState("");
+
   useEffect(() => {
     //load history
 
     auth.onAuthStateChanged((user) => {
       if (user != null) {
-        const displayName = user.displayName;
-        const email = user.email;
-        const photoURL = user.photoURL;
-        const emailVerified = user.emailVerified;
         const userId = user.uid;
         const db = getDatabase();
         const historyRef = ref(db, "users/" + userId);
         onValue(historyRef, (snapshot) => {
+          const newArray = [];
           snapshot.forEach((childSnapshot) => {
-            const childKey = childSnapshot.key;
             const childData = childSnapshot.val();
-            array.push(childData.note);
+            newArray.push(childData.note);
             console.info(childData);
-            console.info(childKey);
           });
+          setArray(newArray);
         });
-        console.log(array);
-        setContent(
-          <div>
-            {array.map((note) => (
-              <div className="user">{note}</div>
-            ))}
-          </div>
-        );
       }
     });
   }, []);
-  return <div>{content}</div>;
+
+  useEffect(() => {
+    setContent(
+      <div>
+        {array.map((note) => (
+          <li class="list-group-item">{note}</li>
+        ))}
+      </div>
+    );
+  }, [array]);
+
+  return (
+    <div>
+      <ul class="list-group list-group-flush">{content}</ul>
+    </div>
+  );
 }
 
 export function HandleDB() {
