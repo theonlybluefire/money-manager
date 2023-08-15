@@ -42,7 +42,9 @@ const MainPage = () => {
   const [note, setNote] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    if (typeof note == "string" || typeof note == "number") {
+    console.log(typeof Handle(note));
+    if (typeof Handle(note) == "string" || typeof Handle(note) == "number") {
+      //validation input
       let output = Handle(note);
       writeUserData(note);
       setNote(""); //rest input
@@ -58,6 +60,7 @@ const MainPage = () => {
         // An error happened.
       });
   };
+
   return (
     <div>
       <button
@@ -120,6 +123,7 @@ const MainPage = () => {
       <button class="btn btn-danger col-2" onClick={Logout}>
         Logout
       </button>
+
       {/*Toast cooming soon*/}
     </div>
   );
