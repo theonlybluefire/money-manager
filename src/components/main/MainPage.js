@@ -25,6 +25,7 @@ import { HandleDB, ShowDB } from "./readDB.js";
 import ErrorToast from "./Toast";
 import writeUserData from "../writeDB";
 import "../../index.css";
+import { DeleteData } from "../DeleteData";
 //firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
@@ -123,7 +124,8 @@ const MainPage = () => {
       <button class="btn btn-danger col-2" onClick={Logout}>
         Logout
       </button>
-
+      {/*Del date component*/}
+      <DeleteData/>
       {/*Toast cooming soon*/}
     </div>
   );
