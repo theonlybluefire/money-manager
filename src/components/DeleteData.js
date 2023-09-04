@@ -47,7 +47,7 @@ export const DeleteData = () => {
         const db = getDatabase();
         //del data
         const dbRef = ref(db, "users/" + userId);
-        dbRef.remove()
+        remove(dbRef)
         .then(() => {
             console.log('Data under UID',userId,' deleted successfully.');
           })

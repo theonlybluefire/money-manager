@@ -125,6 +125,8 @@ const MainPage = () => {
         Logout
       </button>
       {/*Del date component*/}
+      <br/>
+      <br/>
       <DeleteData/>
       {/*Toast cooming soon*/}
     </div>
