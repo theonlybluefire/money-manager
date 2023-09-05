@@ -26,6 +26,7 @@ import ErrorToast from "./Toast";
 import writeUserData from "../writeDB";
 import "../../index.css";
 import { DeleteData } from "../DeleteData";
+import DismissibleExample from "./Toast";
 //firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
@@ -61,7 +62,9 @@ const MainPage = () => {
         // An error happened.
       });
   };
-
+  //toast area
+  
+  
   return (
     <div>
       <button
@@ -129,6 +132,7 @@ const MainPage = () => {
       <br/>
       <DeleteData/>
       {/*Toast cooming soon*/}
+      
     </div>
   );
 };

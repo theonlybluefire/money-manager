@@ -78,3 +78,18 @@ input:focus {
   color: white !important;
   border-color: black !important;
 }
+.toast-header {
+  background-color: black !important;
+  color: white !important;
+
+}
+.toast-body {
+  background-color: rgb(40, 40, 40) !important;
+  color: white !important;
+  border-bottom-right-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+}
+.toast-container {
+  transition: 0.5s !important;
+}
+  

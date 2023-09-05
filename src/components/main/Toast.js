@@ -1,43 +1,32 @@
-import * as bootstrap from "bootstrap";
-import React from "react";
-const { useState, useEffect, useRef } = React;
+import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Toast from 'react-bootstrap/Toast';
 
-const { Toast } = bootstrap;
-
-const ErrorToast = (message) => {
-  const [messageToShow, setMessage] = useState("");
-  setMessage(message);
-  var [toast, setToast] = useState(false);
-  const toastRef = useRef();
-
-  useEffect(() => {
-    var myToast = toastRef.current;
-    var bsToast = bootstrap.Toast.getInstance(myToast);
-    if (!bsToast) {
-      // initialize Toast
-      bsToast = new Toast(myToast, { autohide: true });
-      // hide after init
-      bsToast.hide();
-      setToast(false);
-    } else {
-      //sdf
-      // toggle
-      toast ? bsToast.show() : bsToast.hide();
-    }
-  });
+function DismissibleExample({ message }) {
+  const [showA, setShowA] = useState(true);
+  const toggleShowA = () => setShowA(!showA);
 
   return (
-    <div className="py-2">
-      <button
-        className="btn btn-success"
-        onClick={() => setToast((toast) => !toast)}
-      >
-        Toast {toast ? "hide" : "show"}
-      </button>
-      <div className="toast position-absolute m-4" role="alert" ref={toastRef}>
-        <div className="toast-body">{messageToShow}</div>
-      </div>
-    </div>
+    <Row>
+      <Col  class="toast-container" className="toast-container position-fixed bottom-0 end-0 p-3">
+        <Toast show={showA} onClose={toggleShowA}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">System</strong>
+            <small>Jetzt</small>
+          </Toast.Header>
+          <Toast.Body>{message}</Toast.Body>
+        </Toast>
+      </Col>
+    </Row>
   );
-};
-export default ErrorToast;
+}
+
+
+export default DismissibleExample;

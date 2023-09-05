@@ -22,6 +22,8 @@ import {
   set,
   remove
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+//components
+import DismissibleExample from "./main/Toast";
 //firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBgoMjqs2soEsMlcgb3AztqjoDQuD5Dly8",
@@ -31,11 +33,15 @@ const firebaseConfig = {
   messagingSenderId: "800356072567",
   appId: "1:800356072567:web:b32b2359111e2acc761a72",
 };
+
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 //func
 export const DeleteData = () => {
+  const [showToast, setshowToast] = useState('')
+  const showToastFunc = () => setshowToast(<DismissibleExample message='Ihre noten wurden erfolgreich gelöscht'/>)
   const Del = () => {
     auth.onAuthStateChanged((user) => {
       if (user != null) {
@@ -50,6 +56,7 @@ export const DeleteData = () => {
         remove(dbRef)
         .then(() => {
             console.log('Data under UID',userId,' deleted successfully.');
+            showToastFunc();
           })
         .catch((error) => {
           console.error('Error deleting data:', error);
@@ -60,8 +67,11 @@ export const DeleteData = () => {
     });
   };
   return (
-    <button class="btn btn-danger col-12" onClick={Del}>
-      Delete Data
-    </button>
+    <div>
+      <button class="btn btn-danger col-12" onClick={Del}>
+        Delete Data
+      </button>
+      {showToast}
+    </div>
   );
 };
