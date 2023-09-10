@@ -124,15 +124,14 @@ const MainPage = () => {
           </button>
         </form>
       </div>
-      <button class="btn btn-danger col-2" onClick={Logout}>
+      <div class="row">
+      <button class="btn btn-danger col-6" onClick={Logout}>
         Logout
       </button>
       {/*Del date component*/}
-      <br/>
-      <br/>
       <DeleteData/>
       {/*Toast cooming soon*/}
-      
+      </div>
     </div>
   );
 };

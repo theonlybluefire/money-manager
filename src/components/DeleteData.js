@@ -68,7 +68,7 @@ export const DeleteData = () => {
   };
   return (
     <div>
-      <button class="btn btn-danger col-12" onClick={Del}>
+      <button class="btn btn-danger col-6" onClick={Del}>
         Delete Data
       </button>
       {showToast}
