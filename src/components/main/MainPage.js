@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.js";
-import "bootstrap";
-// Import the functions you need from the SDKs you need
+import "bootstrap";// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
 import {
@@ -18,6 +17,7 @@ import {
   getDatabase,
   ref,
   set,
+  remove
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 //components
 import Handle from "../Handle";
@@ -62,7 +62,33 @@ const MainPage = () => {
         // An error happened.
       });
   };
-  //toast area
+  //del data function not
+    const [showToast, setshowToast] = useState('')
+    const showToastFunc = () => setshowToast(<DismissibleExample message='Ihre noten wurden erfolgreich gelöscht'/>)
+    const Del = () => {
+      auth.onAuthStateChanged((user) => {
+        if (user != null) {
+          const displayName = user.displayName;
+          const email = user.email;
+          const photoURL = user.photoURL;
+          const emailVerified = user.emailVerified;
+          const userId = user.uid;
+          const db = getDatabase();
+          //del data
+          const dbRef = ref(db, "users/" + userId);
+          remove(dbRef)
+          .then(() => {
+              console.log('Data under UID',userId,' deleted successfully.');
+              showToastFunc();
+            })
+          .catch((error) => {
+            console.error('Error deleting data:', error);
+          });
+        } else {
+          console.log("Not logged in ");
+        }
+      });
+    };
   
   
   return (
@@ -98,7 +124,7 @@ const MainPage = () => {
         <div class="offcanvas-body">
           <div>
             {/* Render History (read DB) */}
-            <ShowDB />
+            <ShowDB/>
           </div>
         </div>
       </div>
@@ -124,14 +150,19 @@ const MainPage = () => {
           </button>
         </form>
       </div>
-      <div class="row">
-      <button class="btn btn-danger col-6" onClick={Logout}>
+      <div>
+      <button class="btn btn-danger col-5" onClick={Logout}>
         Logout
       </button>
       {/*Del date component*/}
-      <DeleteData/>
+        <button class="btn btn-danger col-5 float-right" onClick={Del}>
+          Delete Data
+        </button>
+
       {/*Toast cooming soon*/}
-      </div>
+      </div>        
+      {showToast}
+
     </div>
   );
 };
