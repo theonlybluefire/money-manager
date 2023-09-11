@@ -65,6 +65,7 @@ const MainPage = () => {
   //del data function not
     const [showToast, setshowToast] = useState('')
     const showToastFunc = () => setshowToast(<DismissibleExample message='Ihre noten wurden erfolgreich gelöscht'/>)
+    const hideToastFunc = () => setshowToast('')
     const Del = () => {
       auth.onAuthStateChanged((user) => {
         if (user != null) {
@@ -80,6 +81,9 @@ const MainPage = () => {
           .then(() => {
               console.log('Data under UID',userId,' deleted successfully.');
               showToastFunc();
+              setTimeout(() => {
+                hideToastFunc();
+              },2000)
             })
           .catch((error) => {
             console.error('Error deleting data:', error);
@@ -93,8 +97,9 @@ const MainPage = () => {
   
   return (
     <div>
+      <div class="text-center">
       <button
-        class="btn btn-primary text-center"
+        class="btn btn-primary"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#staticBackdrop"
@@ -102,6 +107,7 @@ const MainPage = () => {
       >
         History
       </button>
+      </div>
 
       <div
         class="offcanvas offcanvas-start"

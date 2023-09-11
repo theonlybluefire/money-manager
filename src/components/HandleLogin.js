@@ -18,7 +18,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+//components
+import DismissibleExample from "./main/Toast";
 //firebase
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -33,6 +34,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 function HandleLogin() {
+  const [showToast, setshowToast] = useState('')
+  const showToastFunc = () => setshowToast(<DismissibleExample message='Passwort oder Nutzername ist falsch'/>)
+  const hideToastFunc = () => setshowToast('');
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -46,9 +50,10 @@ function HandleLogin() {
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        showToastFunc();
+        setTimeout(() => {
+          hideToastFunc();
+        },3000);
       });
   }
 
@@ -90,6 +95,7 @@ function HandleLogin() {
           </button>
         </form>
       </div>
+      {showToast}
     </div>
   );
 }
